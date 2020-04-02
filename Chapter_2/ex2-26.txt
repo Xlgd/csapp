@@ -1,0 +1,16 @@
+/* Prototype for library function strlen */
+size_t strlen(const char *s);
+
+/* Determine whether string s is longer than string s */
+/* WARNING: This function is buggy */
+int strlonger(char *s, char *t) {
+    return strlen(s) - strlen(t) > 0;
+}
+
+A. 当strlen(s)小于strlen(t)时会产生不正确的结果
+
+B. 在问题A的情况下，相减后应该得到负数，判断函数返回0，
+   但由于strlen函数返回的是无符号类型，导致相减后得到正数，返回1，
+   得到错误的判断
+
+C. 改为： return strlen(s) - strlen(t);

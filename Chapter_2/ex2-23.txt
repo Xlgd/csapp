@@ -1,0 +1,18 @@
+int fun1(unsigned word) {
+    return (int) ((word << 24) >> 24);
+}
+
+int fun2(unsigned word) {
+    return ((int) word << 24) >> 24;
+}
+
+A.
+    w               func1           func2
+0x00000076        0x00000076      0x00000076
+0x87654321        0x00000021      0x00000021
+0x000000C9        0x000000C9      0xFFFFFFC9
+0xEDCBA987        0x00000087      0xFFFFFF87
+
+B.
+func1 没有改变word的值
+func2 当word倒数第二个字节位置处的数字大于等于8时，会输出一个负数
