@@ -1,0 +1,11 @@
+void inplace_swap(int *x, int *y) {
+    *y = *x ^ *y; /* Step 1 */
+    *x = *x ^ *y; /* Step 2 */
+    *y = *x ^ *y; /* Step 3 */
+}
+
+步骤    *x         *y
+初始    a          b
+第1步   a          a ^ b
+第2步   a ^ a ^ b  a ^ b
+第3步   b          a
