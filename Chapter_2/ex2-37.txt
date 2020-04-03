@@ -1,0 +1,18 @@
+uint64_t asize = ele_cnt * (uint64_t) ele_size;
+void *result = malloc(asize);
+
+A. 改动完全没有帮助，虽然asize的计算更准确一点，但是调用malloc会导致这个值被转换为
+   一个32位无符号数字，因而还是会出现同样的溢出条件
+B. malloc使用一个32位无符号数作为参数，它不可能分配一个大于2^32个字节的块，因此，
+   没有必要试图去分配或者复制这样大的一块内存。函数应该放弃返回NULL
+   用下面的代码取代对malloc原始的调用：
+   
+uint64_t required_size = ele_cnt * (uint64_t) ele_size;
+size_t request_size = (size_t) required_size;
+if (required_size != request_size)
+    /* Overflow must have occurred. Abort operation */
+    return NULL;
+void* result = malloc(request_size);
+if (result == NULL)
+    /* malloc failed */
+    return NULL;
