@@ -1,0 +1,9 @@
+/* Determine whether arguments can be added without overflow */
+/* WARNING: This code is buggy. */
+int tadd_ok(int x, int y) {
+    int sum = x + y;
+    return (sum - x == y) && (sum - y == x);
+}
+
+不管有没有溢出，最终都会返回1。
+因为(x + y) - y总会得到x，无论是否溢出。

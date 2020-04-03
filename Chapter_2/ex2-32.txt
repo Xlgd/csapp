@@ -1,0 +1,8 @@
+/* Determine whether arguments can be added without overflow */
+/* WARNING: This code is buggy. */
+int tsub_ok(int x, int y) {
+    return tadd_ok(x, -y);
+}
+
+当y为TMin时，此时-y也为TMin，就导致(x - TMin)等于(x + TMin)，所以在函数tadd_ok会认为只要x是负数就会溢出，
+x不是负数则不会溢出，可是实际上，当x为负数时，tsub_ok(x, TMin)为1，x不是负数时为0。
