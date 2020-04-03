@@ -11,11 +11,11 @@ int arith(int x, int y) {
 int optarith(int x, int y) {
     int t = x;
     x <<= 5;
-    x -= t;
+    x -= x;
     if (y < 0) y+= 7;
     y >>= 3; /* Arithmetic shift */
     return x + y;
 }
 
-M: 
+M: 31
 N: 8
