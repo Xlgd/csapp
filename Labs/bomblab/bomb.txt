@@ -261,7 +261,7 @@ Disassembly of section .text:
   400d9e:	90                   	nop
   400d9f:	90                   	nop
 
-0000000000400da0 <main>: ;主程序
+0000000000400da0 <main>: 主程序
   400da0:	53                   	push   %rbx
   400da1:	83 ff 01             	cmp    $0x1,%edi
   400da4:	75 10                	jne    400db6 <main+0x16>
@@ -298,37 +298,37 @@ Disassembly of section .text:
   400e2d:	e8 de fc ff ff       	callq  400b10 <puts@plt>
   400e32:	e8 67 06 00 00       	callq  40149e <read_line> ;获取输入
   400e37:	48 89 c7             	mov    %rax,%rdi
-  400e3a:	e8 a1 00 00 00       	callq  400ee0 <phase_1>     ;第一个炸弹
+  400e3a:	e8 a1 00 00 00       	callq  400ee0 <phase_1>     第一个炸弹
   400e3f:	e8 80 07 00 00       	callq  4015c4 <phase_defused>
   400e44:	bf a8 23 40 00       	mov    $0x4023a8,%edi
   400e49:	e8 c2 fc ff ff       	callq  400b10 <puts@plt>
   400e4e:	e8 4b 06 00 00       	callq  40149e <read_line>
   400e53:	48 89 c7             	mov    %rax,%rdi
-  400e56:	e8 a1 00 00 00       	callq  400efc <phase_2>     ;第二个炸弹
+  400e56:	e8 a1 00 00 00       	callq  400efc <phase_2>     第二个炸弹
   400e5b:	e8 64 07 00 00       	callq  4015c4 <phase_defused>
   400e60:	bf ed 22 40 00       	mov    $0x4022ed,%edi
   400e65:	e8 a6 fc ff ff       	callq  400b10 <puts@plt>
   400e6a:	e8 2f 06 00 00       	callq  40149e <read_line>
   400e6f:	48 89 c7             	mov    %rax,%rdi
-  400e72:	e8 cc 00 00 00       	callq  400f43 <phase_3>     ;第三个炸弹
+  400e72:	e8 cc 00 00 00       	callq  400f43 <phase_3>     第三个炸弹
   400e77:	e8 48 07 00 00       	callq  4015c4 <phase_defused>
   400e7c:	bf 0b 23 40 00       	mov    $0x40230b,%edi
   400e81:	e8 8a fc ff ff       	callq  400b10 <puts@plt>
   400e86:	e8 13 06 00 00       	callq  40149e <read_line>
   400e8b:	48 89 c7             	mov    %rax,%rdi
-  400e8e:	e8 79 01 00 00       	callq  40100c <phase_4>     ;第四个炸弹
+  400e8e:	e8 79 01 00 00       	callq  40100c <phase_4>     第四个炸弹
   400e93:	e8 2c 07 00 00       	callq  4015c4 <phase_defused>
   400e98:	bf d8 23 40 00       	mov    $0x4023d8,%edi
   400e9d:	e8 6e fc ff ff       	callq  400b10 <puts@plt>
   400ea2:	e8 f7 05 00 00       	callq  40149e <read_line>
   400ea7:	48 89 c7             	mov    %rax,%rdi
-  400eaa:	e8 b3 01 00 00       	callq  401062 <phase_5>     ;第五个炸弹
+  400eaa:	e8 b3 01 00 00       	callq  401062 <phase_5>     第五个炸弹
   400eaf:	e8 10 07 00 00       	callq  4015c4 <phase_defused>
   400eb4:	bf 1a 23 40 00       	mov    $0x40231a,%edi
   400eb9:	e8 52 fc ff ff       	callq  400b10 <puts@plt>
   400ebe:	e8 db 05 00 00       	callq  40149e <read_line>
   400ec3:	48 89 c7             	mov    %rax,%rdi
-  400ec6:	e8 29 02 00 00       	callq  4010f4 <phase_6>     ;第六个炸弹
+  400ec6:	e8 29 02 00 00       	callq  4010f4 <phase_6>     第六个炸弹
   400ecb:	e8 f4 06 00 00       	callq  4015c4 <phase_defused>
   400ed0:	b8 00 00 00 00       	mov    $0x0,%eax
   400ed5:	5b                   	pop    %rbx
@@ -344,171 +344,171 @@ Disassembly of section .text:
   400edf:	90                   	nop
 
 0000000000400ee0 <phase_1>:
-  400ee0:	48 83 ec 08          	sub    $0x8,%rsp    ;申请8个字节的栈空间
-  400ee4:	be 00 24 40 00       	mov    $0x402400,%esi     ;将一个立即数(地址)存放到%esi寄存器
-  400ee9:	e8 4a 04 00 00       	callq  401338 <strings_not_equal>     ;调用一个函数，比较两个字符串是否相同
-  400eee:	85 c0                	test   %eax,%eax    ;判断%eax中的值是否为0
-  400ef0:	74 05                	je     400ef7 <phase_1+0x17>    ;如果%eax值为0，则跳到400ef7(也就是跳过了引爆炸弹的函数)
-  400ef2:	e8 43 05 00 00       	callq  40143a <explode_bomb>    ;如果%eax值不为0，则调用引爆炸弹的函数
-  400ef7:	48 83 c4 08          	add    $0x8,%rsp    ;取消申请8个字节的栈空间(对应第一行)
-  400efb:	c3                   	retq    ;返回主程序
+  400ee0:	48 83 ec 08          	sub    $0x8,%rsp    申请8个字节的栈空间
+  400ee4:	be 00 24 40 00       	mov    $0x402400,%esi     将一个立即数(地址)存放到%esi寄存器
+  400ee9:	e8 4a 04 00 00       	callq  401338 <strings_not_equal>     调用一个函数，比较两个字符串是否相同
+  400eee:	85 c0                	test   %eax,%eax    判断%eax中的值是否为0
+  400ef0:	74 05                	je     400ef7 <phase_1+0x17>    如果%eax值为0，则跳到400ef7(也就是跳过了引爆炸弹的函数)
+  400ef2:	e8 43 05 00 00       	callq  40143a <explode_bomb>    如果%eax值不为0，则调用引爆炸弹的函数
+  400ef7:	48 83 c4 08          	add    $0x8,%rsp    取消申请8个字节的栈空间(对应第一行)
+  400efb:	c3                   	retq    返回主程序
 
   ;对于第一个炸弹，重点在于获得0x402400这个地址存储的内容，使用命令x/s 0x402400来查看
 
 0000000000400efc <phase_2>:
-  400efc:	55                   	push   %rbp     ;%rbp压栈
-  400efd:	53                   	push   %rbx     ;%rbx压栈
-  400efe:	48 83 ec 28          	sub    $0x28,%rsp     ;申请40个字节的栈空间
+  400efc:	55                   	push   %rbp     %rbp压栈
+  400efd:	53                   	push   %rbx     %rbx压栈
+  400efe:	48 83 ec 28          	sub    $0x28,%rsp     申请40个字节的栈空间
   400f02:	48 89 e6             	mov    %rsp,%rsi    
-  400f05:	e8 52 05 00 00       	callq  40145c <read_six_numbers> ;调用函数，读入6个数字
-  400f0a:	83 3c 24 01          	cmpl   $0x1,(%rsp)    ;%rsp保存着读入的第一个数字的地址，这个数字必须是1，否则引爆
+  400f05:	e8 52 05 00 00       	callq  40145c <read_six_numbers> 调用函数，读入6个数字
+  400f0a:	83 3c 24 01          	cmpl   $0x1,(%rsp)    %rsp保存着读入的第一个数字的地址，这个数字必须是1，否则引爆
   400f0e:	74 20                	je     400f30 <phase_2+0x34>
   400f10:	e8 25 05 00 00       	callq  40143a <explode_bomb>
   400f15:	eb 19                	jmp    400f30 <phase_2+0x34>
-  400f17:	8b 43 fc             	mov    -0x4(%rbx),%eax    ;将%rbx所指的数字的前一个数字传给%eax
-  400f1a:	01 c0                	add    %eax,%eax    ;%eax * 2
-  400f1c:	39 03                	cmp    %eax,(%rbx)    ;将%eax的值与%rbx所指的数字(%eax数字的下一个输入数字)比较
-  400f1e:	74 05                	je     400f25 <phase_2+0x29>    ;如果两个数字相等，则不会引爆炸弹
+  400f17:	8b 43 fc             	mov    -0x4(%rbx),%eax    将%rbx所指的数字的前一个数字传给%eax
+  400f1a:	01 c0                	add    %eax,%eax    %eax * 2
+  400f1c:	39 03                	cmp    %eax,(%rbx)    将%eax的值与%rbx所指的数字(%eax数字的下一个输入数字)比较
+  400f1e:	74 05                	je     400f25 <phase_2+0x29>    如果两个数字相等，则不会引爆炸弹
   400f20:	e8 15 05 00 00       	callq  40143a <explode_bomb>
-  400f25:	48 83 c3 04          	add    $0x4,%rbx    ;使%rbx指向下一个输入数字
-  400f29:	48 39 eb             	cmp    %rbp,%rbx    ;是否处理完6个数字
-  400f2c:	75 e9                	jne    400f17 <phase_2+0x1b>    ;如果不相等表示还未处理完，则继续循环处理
-  400f2e:	eb 0c                	jmp    400f3c <phase_2+0x40>    ;如果相等则结束，跳出循环
-  400f30:	48 8d 5c 24 04       	lea    0x4(%rsp),%rbx     ;将下一个数字的地址传给%rbx
-  400f35:	48 8d 6c 24 18       	lea    0x18(%rsp),%rbp    ;%rbp保存栈中六个数字之后的指针，用于判断是否处理完了这6个数字
+  400f25:	48 83 c3 04          	add    $0x4,%rbx    使%rbx指向下一个输入数字
+  400f29:	48 39 eb             	cmp    %rbp,%rbx    是否处理完6个数字
+  400f2c:	75 e9                	jne    400f17 <phase_2+0x1b>    如果不相等表示还未处理完，则继续循环处理
+  400f2e:	eb 0c                	jmp    400f3c <phase_2+0x40>    如果相等则结束，跳出循环
+  400f30:	48 8d 5c 24 04       	lea    0x4(%rsp),%rbx     将下一个数字的地址传给%rbx
+  400f35:	48 8d 6c 24 18       	lea    0x18(%rsp),%rbp    %rbp保存栈中六个数字之后的指针，用于判断是否处理完了这6个数字
   400f3a:	eb db                	jmp    400f17 <phase_2+0x1b>
-  400f3c:	48 83 c4 28          	add    $0x28,%rsp     ;取消申请的40个字节的栈空间
-  400f40:	5b                   	pop    %rbx     ;%rbx弹出
-  400f41:	5d                   	pop    %rbp     ;%rbp弹出
-  400f42:	c3                   	retq    ;返回主程序
+  400f3c:	48 83 c4 28          	add    $0x28,%rsp     取消申请的40个字节的栈空间
+  400f40:	5b                   	pop    %rbx     %rbx弹出
+  400f41:	5d                   	pop    %rbp     %rbp弹出
+  400f42:	c3                   	retq    返回主程序
 
 0000000000400f43 <phase_3>:
-  400f43:	48 83 ec 18          	sub    $0x18,%rsp
-  400f47:	48 8d 4c 24 0c       	lea    0xc(%rsp),%rcx
-  400f4c:	48 8d 54 24 08       	lea    0x8(%rsp),%rdx
-  400f51:	be cf 25 40 00       	mov    $0x4025cf,%esi
-  400f56:	b8 00 00 00 00       	mov    $0x0,%eax
-  400f5b:	e8 90 fc ff ff       	callq  400bf0 <__isoc99_sscanf@plt>
-  400f60:	83 f8 01             	cmp    $0x1,%eax
-  400f63:	7f 05                	jg     400f6a <phase_3+0x27>
+  400f43:	48 83 ec 18          	sub    $0x18,%rsp     申请24个字节的栈空间
+  400f47:	48 8d 4c 24 0c       	lea    0xc(%rsp),%rcx     %rcx存放第二个输入的数字y
+  400f4c:	48 8d 54 24 08       	lea    0x8(%rsp),%rdx     %rdx存放第一个输入的数字x
+  400f51:	be cf 25 40 00       	mov    $0x4025cf,%esi     可以输出一些看看，这里%esi存放输入的形式，%d %d，表示输入的是两个数字
+  400f56:	b8 00 00 00 00       	mov    $0x0,%eax    %eax置为0
+  400f5b:	e8 90 fc ff ff       	callq  400bf0 <__isoc99_sscanf@plt>     调用sscanf函数读入数字，存放在%rax中
+  400f60:	83 f8 01             	cmp    $0x1,%eax    
+  400f63:	7f 05                	jg     400f6a <phase_3+0x27>    如果输入两个数字，则不会引爆
   400f65:	e8 d0 04 00 00       	callq  40143a <explode_bomb>
-  400f6a:	83 7c 24 08 07       	cmpl   $0x7,0x8(%rsp)
-  400f6f:	77 3c                	ja     400fad <phase_3+0x6a>
-  400f71:	8b 44 24 08          	mov    0x8(%rsp),%eax
-  400f75:	ff 24 c5 70 24 40 00 	jmpq   *0x402470(,%rax,8)
-  400f7c:	b8 cf 00 00 00       	mov    $0xcf,%eax
-  400f81:	eb 3b                	jmp    400fbe <phase_3+0x7b>
-  400f83:	b8 c3 02 00 00       	mov    $0x2c3,%eax
+  400f6a:	83 7c 24 08 07       	cmpl   $0x7,0x8(%rsp)     比较第一个输入数字x与7的大小
+  400f6f:	77 3c                	ja     400fad <phase_3+0x6a>    如果数字大于7，则会引爆，所以第一个输入x<=7
+  400f71:	8b 44 24 08          	mov    0x8(%rsp),%eax     将x放入%eax中
+  400f75:	ff 24 c5 70 24 40 00 	jmpq   *0x402470(,%rax,8)     跳转到0x402470+8*%eax地址所存储的地址，如果x为0，则会跳转到0x402470这个地址所存储的地址，可以输出看看，发现跳转到了400f7c
+  400f7c:	b8 cf 00 00 00       	mov    $0xcf,%eax     当x为0时，会跳转到这里，将%eax设置为0xcf，十进制为207
+  400f81:	eb 3b                	jmp    400fbe <phase_3+0x7b>    跳转
+  400f83:	b8 c3 02 00 00       	mov    $0x2c3,%eax    这里我没有尝试，但是当你输入不同的x的时候，400f75地址的那条指令会跳转到不同的位置，也会设置不同的%eax值
   400f88:	eb 34                	jmp    400fbe <phase_3+0x7b>
-  400f8a:	b8 00 01 00 00       	mov    $0x100,%eax
+  400f8a:	b8 00 01 00 00       	mov    $0x100,%eax    同上
   400f8f:	eb 2d                	jmp    400fbe <phase_3+0x7b>
-  400f91:	b8 85 01 00 00       	mov    $0x185,%eax
+  400f91:	b8 85 01 00 00       	mov    $0x185,%eax    同上
   400f96:	eb 26                	jmp    400fbe <phase_3+0x7b>
-  400f98:	b8 ce 00 00 00       	mov    $0xce,%eax
+  400f98:	b8 ce 00 00 00       	mov    $0xce,%eax     同上
   400f9d:	eb 1f                	jmp    400fbe <phase_3+0x7b>
-  400f9f:	b8 aa 02 00 00       	mov    $0x2aa,%eax
+  400f9f:	b8 aa 02 00 00       	mov    $0x2aa,%eax    同上
   400fa4:	eb 18                	jmp    400fbe <phase_3+0x7b>
-  400fa6:	b8 47 01 00 00       	mov    $0x147,%eax
+  400fa6:	b8 47 01 00 00       	mov    $0x147,%eax    同上
   400fab:	eb 11                	jmp    400fbe <phase_3+0x7b>
   400fad:	e8 88 04 00 00       	callq  40143a <explode_bomb>
   400fb2:	b8 00 00 00 00       	mov    $0x0,%eax
   400fb7:	eb 05                	jmp    400fbe <phase_3+0x7b>
   400fb9:	b8 37 01 00 00       	mov    $0x137,%eax
-  400fbe:	3b 44 24 0c          	cmp    0xc(%rsp),%eax
-  400fc2:	74 05                	je     400fc9 <phase_3+0x86>
-  400fc4:	e8 71 04 00 00       	callq  40143a <explode_bomb>
-  400fc9:	48 83 c4 18          	add    $0x18,%rsp
-  400fcd:	c3                   	retq   
+  400fbe:	3b 44 24 0c          	cmp    0xc(%rsp),%eax     将%eax与第二个输入y比较
+  400fc2:	74 05                	je     400fc9 <phase_3+0x86>    如果y=%eax值，则跳转到结尾，所以这里就可以得知当x为0时，y必须为0xcf(207)
+  400fc4:	e8 71 04 00 00       	callq  40143a <explode_bomb>    如果y!=%eax值，则引爆
+  400fc9:	48 83 c4 18          	add    $0x18,%rsp     取消申请24个字节的栈空间
+  400fcd:	c3                   	retq    返回
 
-0000000000400fce <func4>:
-  400fce:	48 83 ec 08          	sub    $0x8,%rsp
-  400fd2:	89 d0                	mov    %edx,%eax
-  400fd4:	29 f0                	sub    %esi,%eax
-  400fd6:	89 c1                	mov    %eax,%ecx
-  400fd8:	c1 e9 1f             	shr    $0x1f,%ecx
-  400fdb:	01 c8                	add    %ecx,%eax
-  400fdd:	d1 f8                	sar    %eax
-  400fdf:	8d 0c 30             	lea    (%rax,%rsi,1),%ecx
-  400fe2:	39 f9                	cmp    %edi,%ecx
-  400fe4:	7e 0c                	jle    400ff2 <func4+0x24>
+0000000000400fce <func4>:     这是一个递归函数，我们避免递归，直接分析重点
+  400fce:	48 83 ec 08          	sub    $0x8,%rsp    申请8个字节的栈空间
+  400fd2:	89 d0                	mov    %edx,%eax    将%edx值(0xe)传入%eax
+  400fd4:	29 f0                	sub    %esi,%eax    %eax = %eax - %esi = 0xe
+  400fd6:	89 c1                	mov    %eax,%ecx    %ecx = %eax = 0xe，覆盖了y
+  400fd8:	c1 e9 1f             	shr    $0x1f,%ecx     %ecx值逻辑右移0x1f位，%ecx被置为0   
+  400fdb:	01 c8                	add    %ecx,%eax    %eax = %eax + %ecx = 0xe
+  400fdd:	d1 f8                	sar    %eax     算术右移一位，%eax = 0x7
+  400fdf:	8d 0c 30             	lea    (%rax,%rsi,1),%ecx     %ecx = %eax = 0x7
+  400fe2:	39 f9                	cmp    %edi,%ecx    %edi中存放着x，%ecx为7
+  400fe4:	7e 0c                	jle    400ff2 <func4+0x24>    如果x>=7则跳转
   400fe6:	8d 51 ff             	lea    -0x1(%rcx),%edx
   400fe9:	e8 e0 ff ff ff       	callq  400fce <func4>
   400fee:	01 c0                	add    %eax,%eax
   400ff0:	eb 15                	jmp    401007 <func4+0x39>
-  400ff2:	b8 00 00 00 00       	mov    $0x0,%eax
-  400ff7:	39 f9                	cmp    %edi,%ecx
-  400ff9:	7d 0c                	jge    401007 <func4+0x39>
+  400ff2:	b8 00 00 00 00       	mov    $0x0,%eax    %eax置0
+  400ff7:	39 f9                	cmp    %edi,%ecx    比较7和x
+  400ff9:	7d 0c                	jge    401007 <func4+0x39>    如果x<=7，则跳转到最后，所以可以由上面的x>=7的条件得出x=7
   400ffb:	8d 71 01             	lea    0x1(%rcx),%esi
   400ffe:	e8 cb ff ff ff       	callq  400fce <func4>
   401003:	8d 44 00 01          	lea    0x1(%rax,%rax,1),%eax
-  401007:	48 83 c4 08          	add    $0x8,%rsp
-  40100b:	c3                   	retq   
+  401007:	48 83 c4 08          	add    $0x8,%rsp    取消申请8字节栈空间
+  40100b:	c3                   	retq    返回
 
 000000000040100c <phase_4>:
-  40100c:	48 83 ec 18          	sub    $0x18,%rsp
-  401010:	48 8d 4c 24 0c       	lea    0xc(%rsp),%rcx
-  401015:	48 8d 54 24 08       	lea    0x8(%rsp),%rdx
-  40101a:	be cf 25 40 00       	mov    $0x4025cf,%esi
-  40101f:	b8 00 00 00 00       	mov    $0x0,%eax
-  401024:	e8 c7 fb ff ff       	callq  400bf0 <__isoc99_sscanf@plt>
-  401029:	83 f8 02             	cmp    $0x2,%eax
-  40102c:	75 07                	jne    401035 <phase_4+0x29>
-  40102e:	83 7c 24 08 0e       	cmpl   $0xe,0x8(%rsp)
-  401033:	76 05                	jbe    40103a <phase_4+0x2e>
+  40100c:	48 83 ec 18          	sub    $0x18,%rsp     申请24个字节的栈空间
+  401010:	48 8d 4c 24 0c       	lea    0xc(%rsp),%rcx     %rcx存放第二个输入的数字y
+  401015:	48 8d 54 24 08       	lea    0x8(%rsp),%rdx     %rdx存放第一个输入的数字x
+  40101a:	be cf 25 40 00       	mov    $0x4025cf,%esi     %esi存放输入的形式，%d，%d
+  40101f:	b8 00 00 00 00       	mov    $0x0,%eax    %eax置0
+  401024:	e8 c7 fb ff ff       	callq  400bf0 <__isoc99_sscanf@plt>     调用sscanf函数读入数字
+  401029:	83 f8 02             	cmp    $0x2,%eax    是否输入了两个数字
+  40102c:	75 07                	jne    401035 <phase_4+0x29>    如果没有，则引爆
+  40102e:	83 7c 24 08 0e       	cmpl   $0xe,0x8(%rsp)   
+  401033:	76 05                	jbe    40103a <phase_4+0x2e> 
   401035:	e8 00 04 00 00       	callq  40143a <explode_bomb>
   40103a:	ba 0e 00 00 00       	mov    $0xe,%edx
   40103f:	be 00 00 00 00       	mov    $0x0,%esi
-  401044:	8b 7c 24 08          	mov    0x8(%rsp),%edi
-  401048:	e8 81 ff ff ff       	callq  400fce <func4>
-  40104d:	85 c0                	test   %eax,%eax
-  40104f:	75 07                	jne    401058 <phase_4+0x4c>
-  401051:	83 7c 24 0c 00       	cmpl   $0x0,0xc(%rsp)
-  401056:	74 05                	je     40105d <phase_4+0x51>
+  401044:	8b 7c 24 08          	mov    0x8(%rsp),%edi     将x传入%edi
+  401048:	e8 81 ff ff ff       	callq  400fce <func4>     调用函数func4
+  40104d:	85 c0                	test   %eax,%eax    返回后，检查%eax值的大小
+  40104f:	75 07                	jne    401058 <phase_4+0x4c>    若%eax值不为0，则引爆
+  401051:	83 7c 24 0c 00       	cmpl   $0x0,0xc(%rsp)     比较y与0的大小
+  401056:	74 05                	je     40105d <phase_4+0x51>    若y=0，则跳转到结束，否则引爆
   401058:	e8 dd 03 00 00       	callq  40143a <explode_bomb>
-  40105d:	48 83 c4 18          	add    $0x18,%rsp
-  401061:	c3                   	retq   
+  40105d:	48 83 c4 18          	add    $0x18,%rsp 取消申请24字节空间
+  401061:	c3                   	retq    返回
 
 0000000000401062 <phase_5>:
-  401062:	53                   	push   %rbx
-  401063:	48 83 ec 20          	sub    $0x20,%rsp
-  401067:	48 89 fb             	mov    %rdi,%rbx
-  40106a:	64 48 8b 04 25 28 00 	mov    %fs:0x28,%rax
+  401062:	53                   	push   %rbx     %rdx压栈
+  401063:	48 83 ec 20          	sub    $0x20,%rsp     申请32字节的栈空间
+  401067:	48 89 fb             	mov    %rdi,%rbx    将输入的字符串地址传入%rbx
+  40106a:	64 48 8b 04 25 28 00 	mov    %fs:0x28,%rax    这里不用在意，不影响实验
   401071:	00 00 
   401073:	48 89 44 24 18       	mov    %rax,0x18(%rsp)
   401078:	31 c0                	xor    %eax,%eax
-  40107a:	e8 9c 02 00 00       	callq  40131b <string_length>
-  40107f:	83 f8 06             	cmp    $0x6,%eax
-  401082:	74 4e                	je     4010d2 <phase_5+0x70>
+  40107a:	e8 9c 02 00 00       	callq  40131b <string_length>     调用函数判断输入字符串长度
+  40107f:	83 f8 06             	cmp    $0x6,%eax    这里我们知道字符串长度必须为6
+  401082:	74 4e                	je     4010d2 <phase_5+0x70>    如果长度为6，则不引爆
   401084:	e8 b1 03 00 00       	callq  40143a <explode_bomb>
   401089:	eb 47                	jmp    4010d2 <phase_5+0x70>
-  40108b:	0f b6 0c 03          	movzbl (%rbx,%rax,1),%ecx
+  40108b:	0f b6 0c 03          	movzbl (%rbx,%rax,1),%ecx      
   40108f:	88 0c 24             	mov    %cl,(%rsp)
   401092:	48 8b 14 24          	mov    (%rsp),%rdx
-  401096:	83 e2 0f             	and    $0xf,%edx
-  401099:	0f b6 92 b0 24 40 00 	movzbl 0x4024b0(%rdx),%edx
-  4010a0:	88 54 04 10          	mov    %dl,0x10(%rsp,%rax,1)
-  4010a4:	48 83 c0 01          	add    $0x1,%rax
-  4010a8:	48 83 f8 06          	cmp    $0x6,%rax
-  4010ac:	75 dd                	jne    40108b <phase_5+0x29>
-  4010ae:	c6 44 24 16 00       	movb   $0x0,0x16(%rsp)
-  4010b3:	be 5e 24 40 00       	mov    $0x40245e,%esi
-  4010b8:	48 8d 7c 24 10       	lea    0x10(%rsp),%rdi
-  4010bd:	e8 76 02 00 00       	callq  401338 <strings_not_equal>
-  4010c2:	85 c0                	test   %eax,%eax
-  4010c4:	74 13                	je     4010d9 <phase_5+0x77>
+  401096:	83 e2 0f             	and    $0xf,%edx    取字符串中字符ASCII码的低四位
+  401099:	0f b6 92 b0 24 40 00 	movzbl 0x4024b0(%rdx),%edx    然后再将低四位和一个常量(0x4024b0)相加，结果作为地址取得改地址存储的字符
+  4010a0:	88 54 04 10          	mov    %dl,0x10(%rsp,%rax,1)    最后将6个结果依次存储到%rsp+0x10~%rsp+0x15中
+  4010a4:	48 83 c0 01          	add    $0x1,%rax    %rax = %rax + 1
+  4010a8:	48 83 f8 06          	cmp    $0x6,%rax    是否处理完6个字符
+  4010ac:	75 dd                	jne    40108b <phase_5+0x29>    如果没有处理结束，则跳转，循环继续
+  4010ae:	c6 44 24 16 00       	movb   $0x0,0x16(%rsp)    如果处理结束，则继续
+  4010b3:	be 5e 24 40 00       	mov    $0x40245e,%esi     取出地址0x40245e的字符串，可以输出看看: "flyers"
+  4010b8:	48 8d 7c 24 10       	lea    0x10(%rsp),%rdi    将第一个字符的地址(我们之前算出的结果)传入%rdi
+  4010bd:	e8 76 02 00 00       	callq  401338 <strings_not_equal>     调用函数比较输入字符串和flyers是否相等
+  4010c2:	85 c0                	test   %eax,%eax   判断%eax是否为0 
+  4010c4:	74 13                	je     4010d9 <phase_5+0x77>    如果为0，则表示相等，不会引爆
   4010c6:	e8 6f 03 00 00       	callq  40143a <explode_bomb>
   4010cb:	0f 1f 44 00 00       	nopl   0x0(%rax,%rax,1)
   4010d0:	eb 07                	jmp    4010d9 <phase_5+0x77>
-  4010d2:	b8 00 00 00 00       	mov    $0x0,%eax
+  4010d2:	b8 00 00 00 00       	mov    $0x0,%eax    %eax置0
   4010d7:	eb b2                	jmp    40108b <phase_5+0x29>
   4010d9:	48 8b 44 24 18       	mov    0x18(%rsp),%rax
   4010de:	64 48 33 04 25 28 00 	xor    %fs:0x28,%rax
   4010e5:	00 00 
   4010e7:	74 05                	je     4010ee <phase_5+0x8c>
   4010e9:	e8 42 fa ff ff       	callq  400b30 <__stack_chk_fail@plt>
-  4010ee:	48 83 c4 20          	add    $0x20,%rsp
-  4010f2:	5b                   	pop    %rbx
-  4010f3:	c3                   	retq   
+  4010ee:	48 83 c4 20          	add    $0x20,%rsp     取消申请栈空间
+  4010f2:	5b                   	pop    %rbx     %rbx弹出
+  4010f3:	c3                   	retq    返回
 
 00000000004010f4 <phase_6>:
   4010f4:	41 56                	push   %r14
@@ -687,17 +687,17 @@ Disassembly of section .text:
   401311:	bf 08 00 00 00       	mov    $0x8,%edi
   401316:	e8 05 f9 ff ff       	callq  400c20 <exit@plt>
 
-000000000040131b <string_length>:
-  40131b:	80 3f 00             	cmpb   $0x0,(%rdi)
-  40131e:	74 12                	je     401332 <string_length+0x17>
-  401320:	48 89 fa             	mov    %rdi,%rdx
-  401323:	48 83 c2 01          	add    $0x1,%rdx
-  401327:	89 d0                	mov    %edx,%eax
+000000000040131b <string_length>:     计算输入字符串的长度，%eax返回长度
+  40131b:	80 3f 00             	cmpb   $0x0,(%rdi)    判断输入字符串是否为空
+  40131e:	74 12                	je     401332 <string_length+0x17>    如果为空，则跳转到结束
+  401320:	48 89 fa             	mov    %rdi,%rdx    字符串地址传入%rdx
+  401323:	48 83 c2 01          	add    $0x1,%rdx    %rdx = %rdx + 0x1
+  401327:	89 d0                	mov    %edx,%eax    
   401329:	29 f8                	sub    %edi,%eax
   40132b:	80 3a 00             	cmpb   $0x0,(%rdx)
-  40132e:	75 f3                	jne    401323 <string_length+0x8>
+  40132e:	75 f3                	jne    401323 <string_length+0x8>     若%rdx地址所指的字符串不为空，则继续循环
   401330:	f3 c3                	repz retq 
-  401332:	b8 00 00 00 00       	mov    $0x0,%eax
+  401332:	b8 00 00 00 00       	mov    $0x0,%eax    %eax置为0，表示字符串为空
   401337:	c3                   	retq   
 
 0000000000401338 <strings_not_equal>:
@@ -804,23 +804,23 @@ Disassembly of section .text:
   401457:	e8 c4 f7 ff ff       	callq  400c20 <exit@plt>
 
 000000000040145c <read_six_numbers>:
-  40145c:	48 83 ec 18          	sub    $0x18,%rsp     ;申请24个字节的栈空间
-  401460:	48 89 f2             	mov    %rsi,%rdx    ;%rdx存放第一个输入的数字    
-  401463:	48 8d 4e 04          	lea    0x4(%rsi),%rcx     ;%rcx存放第二个输入的数字
+  40145c:	48 83 ec 18          	sub    $0x18,%rsp     申请24个字节的栈空间
+  401460:	48 89 f2             	mov    %rsi,%rdx    %rdx存放第一个输入的数字    
+  401463:	48 8d 4e 04          	lea    0x4(%rsi),%rcx     %rcx存放第二个输入的数字
   401467:	48 8d 46 14          	lea    0x14(%rsi),%rax
   40146b:	48 89 44 24 08       	mov    %rax,0x8(%rsp)
   401470:	48 8d 46 10          	lea    0x10(%rsi),%rax
   401474:	48 89 04 24          	mov    %rax,(%rsp)
-  401478:	4c 8d 4e 0c          	lea    0xc(%rsi),%r9    ;%r9存放第四个输入的数字
-  40147c:	4c 8d 46 08          	lea    0x8(%rsi),%r8    ;%r8存放第三个输入的数字
-  401480:	be c3 25 40 00       	mov    $0x4025c3,%esi   ;决定%rsi形式 %d %d %d %d %d %d 
+  401478:	4c 8d 4e 0c          	lea    0xc(%rsi),%r9    %r9存放第四个输入的数字
+  40147c:	4c 8d 46 08          	lea    0x8(%rsi),%r8    %r8存放第三个输入的数字
+  401480:	be c3 25 40 00       	mov    $0x4025c3,%esi   决定%rsi形式 %d %d %d %d %d %d 
   401485:	b8 00 00 00 00       	mov    $0x0,%eax    
-  40148a:	e8 61 f7 ff ff       	callq  400bf0 <__isoc99_sscanf@plt>     ;调用sscanf函数读入数字
-  40148f:	83 f8 05             	cmp    $0x5,%eax    ;读入6个数字后跳过引爆炸弹
+  40148a:	e8 61 f7 ff ff       	callq  400bf0 <__isoc99_sscanf@plt>     调用sscanf函数读入数字
+  40148f:	83 f8 05             	cmp    $0x5,%eax    读入6个数字后跳过引爆炸弹
   401492:	7f 05                	jg     401499 <read_six_numbers+0x3d>
   401494:	e8 a1 ff ff ff       	callq  40143a <explode_bomb>
-  401499:	48 83 c4 18          	add    $0x18,%rsp     ;取消申请24个字节的栈空间(对应第一行)
-  40149d:	c3                   	retq   
+  401499:	48 83 c4 18          	add    $0x18,%rsp     取消申请24个字节的栈空间(对应第一行)
+  40149d:	c3                   	retq    返回
 
 000000000040149e <read_line>:
   40149e:	48 83 ec 08          	sub    $0x8,%rsp
