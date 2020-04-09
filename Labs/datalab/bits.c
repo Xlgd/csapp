@@ -154,7 +154,6 @@ int bitXor(int x, int y) {
 int tmin(void) {
   int one = 1;
   return (one << 31); // 最小的有符号数，符号位为1，其余都是0
-
 }
 //2
 /*
@@ -166,8 +165,8 @@ int tmin(void) {
  */
 int isTmax(int x) {
   int neg1;
-  neg1 = !(~x); // if x == -1, neg1 == 1, else, neg1 == 0
-  return !((~(x+1)^x)|neg1); // add 1, flip, xor, becomes 0 if Tmax (or if -1)
+  neg1 = !(~x); // 如果x为-1, 则neg1为1，否则neg1为0，这里是为了排除-1的干扰
+  return !((~(x+1)^x)|neg1); // 给x加1，再翻转，最后和自身取异或，如果x为Tmax，则返回1，否则返回0
 }
 /* 
  * allOddBits - return 1 if all odd-numbered bits in word set to 1
@@ -180,7 +179,7 @@ int isTmax(int x) {
 int allOddBits(int x) {
   int mask = (0xAA << 8) + 0xAA;
   mask = (mask << 16) + mask; // 构造掩码
-  return !((x & mask) ^ mask); // &操作将x的奇数位取出，偶数位置0，之后再与掩码异或判断是否满足条件
+  return !((x & mask) ^ mask); // &操作将x的奇数位取出，偶数位置0，之后再与掩码异或判断是否满足函数的条件
 }
 /* 
  * negate - return -x 
