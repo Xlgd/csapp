@@ -366,7 +366,7 @@ Disassembly of section .text:
   400f10:	e8 25 05 00 00       	callq  40143a <explode_bomb>
   400f15:	eb 19                	jmp    400f30 <phase_2+0x34>
   400f17:	8b 43 fc             	mov    -0x4(%rbx),%eax    将%rbx所指的数字的前一个数字传给%eax
-  400f1a:	01 c0                	add    %eax,%eax    %eax * 2
+  400f1a:	01 c0                	add    %eax,%eax    %eax * 2，%eax中的值乘2
   400f1c:	39 03                	cmp    %eax,(%rbx)    将%eax的值与%rbx所指的数字(%eax数字的下一个输入数字)比较
   400f1e:	74 05                	je     400f25 <phase_2+0x29>    如果两个数字相等，则不会引爆炸弹
   400f20:	e8 15 05 00 00       	callq  40143a <explode_bomb>
@@ -493,7 +493,7 @@ Disassembly of section .text:
   4010ae:	c6 44 24 16 00       	movb   $0x0,0x16(%rsp)    如果处理结束，则继续
   4010b3:	be 5e 24 40 00       	mov    $0x40245e,%esi     取出地址0x40245e的字符串，可以输出看看: "flyers"
   4010b8:	48 8d 7c 24 10       	lea    0x10(%rsp),%rdi    将第一个字符的地址(我们之前算出的结果)传入%rdi
-  4010bd:	e8 76 02 00 00       	callq  401338 <strings_not_equal>     调用函数比较输入字符串和flyers是否相等
+  4010bd:	e8 76 02 00 00       	callq  401338 <strings_not_equal>     调用函数比较处理过后的字符串和flyers是否相等
   4010c2:	85 c0                	test   %eax,%eax   判断%eax是否为0 
   4010c4:	74 13                	je     4010d9 <phase_5+0x77>    如果为0，则表示相等，不会引爆
   4010c6:	e8 6f 03 00 00       	callq  40143a <explode_bomb>
@@ -511,63 +511,63 @@ Disassembly of section .text:
   4010f3:	c3                   	retq    返回
 
 00000000004010f4 <phase_6>:
-  4010f4:	41 56                	push   %r14
+  4010f4:	41 56                	push   %r14     压栈
   4010f6:	41 55                	push   %r13
   4010f8:	41 54                	push   %r12
   4010fa:	55                   	push   %rbp
   4010fb:	53                   	push   %rbx
-  4010fc:	48 83 ec 50          	sub    $0x50,%rsp
+  4010fc:	48 83 ec 50          	sub    $0x50,%rsp     申请80字节栈空间
   401100:	49 89 e5             	mov    %rsp,%r13
   401103:	48 89 e6             	mov    %rsp,%rsi
-  401106:	e8 51 03 00 00       	callq  40145c <read_six_numbers>
-  40110b:	49 89 e6             	mov    %rsp,%r14
+  401106:	e8 51 03 00 00       	callq  40145c <read_six_numbers>    读入六个数字，分别放入%rsp+0x0~%rsp+0x14
+  40110b:	49 89 e6             	mov    %rsp,%r14    从这里开始一直到401151是一个大循环，用于判断每个数字小于等于6
   40110e:	41 bc 00 00 00 00    	mov    $0x0,%r12d
-  401114:	4c 89 ed             	mov    %r13,%rbp
-  401117:	41 8b 45 00          	mov    0x0(%r13),%eax
-  40111b:	83 e8 01             	sub    $0x1,%eax
-  40111e:	83 f8 05             	cmp    $0x5,%eax
-  401121:	76 05                	jbe    401128 <phase_6+0x34>
+  401114:	4c 89 ed             	mov    %r13,%rbp    第i个数字地址传入%rbp
+  401117:	41 8b 45 00          	mov    0x0(%r13),%eax     取出一个数字传入%eax
+  40111b:	83 e8 01             	sub    $0x1,%eax    %eax = %eax - 1
+  40111e:	83 f8 05             	cmp    $0x5,%eax    比较0x5和%eax
+  401121:	76 05                	jbe    401128 <phase_6+0x34>    如果%eax<=5，则不会引爆
   401123:	e8 12 03 00 00       	callq  40143a <explode_bomb>
-  401128:	41 83 c4 01          	add    $0x1,%r12d
-  40112c:	41 83 fc 06          	cmp    $0x6,%r12d
-  401130:	74 21                	je     401153 <phase_6+0x5f>
-  401132:	44 89 e3             	mov    %r12d,%ebx
-  401135:	48 63 c3             	movslq %ebx,%rax
-  401138:	8b 04 84             	mov    (%rsp,%rax,4),%eax
-  40113b:	39 45 00             	cmp    %eax,0x0(%rbp)
-  40113e:	75 05                	jne    401145 <phase_6+0x51>
+  401128:	41 83 c4 01          	add    $0x1,%r12d     %r12d = %r12d + 1，就相当于循环中的计数
+  40112c:	41 83 fc 06          	cmp    $0x6,%r12d     判断是否处理完了6个数字
+  401130:	74 21                	je     401153 <phase_6+0x5f>    如果处理结束，则跳出大循环
+  401132:	44 89 e3             	mov    %r12d,%ebx     如果没有结束，则继续往下
+  401135:	48 63 c3             	movslq %ebx,%rax    从这里开始一直到40114b是一个小循环，用于判断第i个数字不和第i+1~6个数字相同，保证输入的6个数字各不相同
+  401138:	8b 04 84             	mov    (%rsp,%rax,4),%eax     取出下一个数字，传入%eax
+  40113b:	39 45 00             	cmp    %eax,0x0(%rbp)   比较%eax中的数字与第i个数字是否相等  
+  40113e:	75 05                	jne    401145 <phase_6+0x51>    如果不相等，则不引爆
   401140:	e8 f5 02 00 00       	callq  40143a <explode_bomb>
-  401145:	83 c3 01             	add    $0x1,%ebx
-  401148:	83 fb 05             	cmp    $0x5,%ebx
-  40114b:	7e e8                	jle    401135 <phase_6+0x41>
-  40114d:	49 83 c5 04          	add    $0x4,%r13
-  401151:	eb c1                	jmp    401114 <phase_6+0x20>
-  401153:	48 8d 74 24 18       	lea    0x18(%rsp),%rsi
-  401158:	4c 89 f0             	mov    %r14,%rax
-  40115b:	b9 07 00 00 00       	mov    $0x7,%ecx
-  401160:	89 ca                	mov    %ecx,%edx
-  401162:	2b 10                	sub    (%rax),%edx
-  401164:	89 10                	mov    %edx,(%rax)
-  401166:	48 83 c0 04          	add    $0x4,%rax
-  40116a:	48 39 f0             	cmp    %rsi,%rax
-  40116d:	75 f1                	jne    401160 <phase_6+0x6c>
-  40116f:	be 00 00 00 00       	mov    $0x0,%esi
+  401145:	83 c3 01             	add    $0x1,%ebx    %edx = %edx + 1    
+  401148:	83 fb 05             	cmp    $0x5,%ebx    比较%edx与0x5
+  40114b:	7e e8                	jle    401135 <phase_6+0x41>    如果%edx<=0x5，则表示没有比较结束，继续小循环
+  40114d:	49 83 c5 04          	add    $0x4,%r13    如果比较结束，跳出小循环，更新%r13的值(更新为第i+1数字地址)，开始处理下一个数字    
+  401151:	eb c1                	jmp    401114 <phase_6+0x20>    跳转到大循环起始部分
+  401153:	48 8d 74 24 18       	lea    0x18(%rsp),%rsi    %rsi保存着6个数字处理完后的地址，用于判断循环是否需要结束
+  401158:	4c 89 f0             	mov    %r14,%rax    %r14中存有第一个数字的地址
+  40115b:	b9 07 00 00 00       	mov    $0x7,%ecx    从这里开始到40116d是一个循环，作用是将保存在栈中的数字(我们输入的)，对7进行求补并保存回原位置，比如a[i] = 7 - a[i]，a[i]表示输入的第i个数字的值
+  401160:	89 ca                	mov    %ecx,%edx    %edx = 0x7
+  401162:	2b 10                	sub    (%rax),%edx    %edx = %edx - (%rax指向的数字)，即输入的数字对7求补
+  401164:	89 10                	mov    %edx,(%rax)    求补的结果保存回原位置
+  401166:	48 83 c0 04          	add    $0x4,%rax    更新%rax指向下一个数字，继续处理
+  40116a:	48 39 f0             	cmp    %rsi,%rax    判断是否处理完6个数字
+  40116d:	75 f1                	jne    401160 <phase_6+0x6c>    没有处理完，继续循环
+  40116f:	be 00 00 00 00       	mov    $0x0,%esi    处理完，继续往下
   401174:	eb 21                	jmp    401197 <phase_6+0xa3>
-  401176:	48 8b 52 08          	mov    0x8(%rdx),%rdx
-  40117a:	83 c0 01             	add    $0x1,%eax
-  40117d:	39 c8                	cmp    %ecx,%eax
-  40117f:	75 f5                	jne    401176 <phase_6+0x82>
-  401181:	eb 05                	jmp    401188 <phase_6+0x94>
-  401183:	ba d0 32 60 00       	mov    $0x6032d0,%edx
-  401188:	48 89 54 74 20       	mov    %rdx,0x20(%rsp,%rsi,2)
-  40118d:	48 83 c6 04          	add    $0x4,%rsi
-  401191:	48 83 fe 18          	cmp    $0x18,%rsi
-  401195:	74 14                	je     4011ab <phase_6+0xb7>
-  401197:	8b 0c 34             	mov    (%rsp,%rsi,1),%ecx
-  40119a:	83 f9 01             	cmp    $0x1,%ecx
-  40119d:	7e e4                	jle    401183 <phase_6+0x8f>
-  40119f:	b8 01 00 00 00       	mov    $0x1,%eax
-  4011a4:	ba d0 32 60 00       	mov    $0x6032d0,%edx
+  401176:	48 8b 52 08          	mov    0x8(%rdx),%rdx     更新%rdx为下一个地址，从这里开始到4011a9有一个大循环，从这里到40117f又有一个小循环。作用是为了访问一个链表
+  40117a:	83 c0 01             	add    $0x1,%eax    %eax = %eax + 1
+  40117d:	39 c8                	cmp    %ecx,%eax    判断是否到达第a[i]个节点
+  40117f:	75 f5                	jne    401176 <phase_6+0x82>    没有到达，则继续循环沿着链表前进
+  401181:	eb 05                	jmp    401188 <phase_6+0x94>    到达第a[i]个节点
+  401183:	ba d0 32 60 00       	mov    $0x6032d0,%edx     设置链表首地址为0x6032d0，存入%edx
+  401188:	48 89 54 74 20       	mov    %rdx,0x20(%rsp,%rsi,2)     将第a[i]个节点的地址放入%rsp+0x20+2*%rsi
+  40118d:	48 83 c6 04          	add    $0x4,%rsi    更新%rsi
+  401191:	48 83 fe 18          	cmp    $0x18,%rsi     判断是否针对输入的所有第i个数，都按照a[i]的值获取了链表中第a[i]个节点，并存放在了合适的位置
+  401195:	74 14                	je     4011ab <phase_6+0xb7>    访问结束，跳转
+  401197:	8b 0c 34             	mov    (%rsp,%rsi,1),%ecx     没有结束，更新%ecx = %rsp
+  40119a:	83 f9 01             	cmp    $0x1,%ecx    比较  
+  40119d:	7e e4                	jle    401183 <phase_6+0x8f>    如果%ecx值小于等于0x1，则表示到达链表结尾，跳转
+  40119f:	b8 01 00 00 00       	mov    $0x1,%eax    如果没到达结尾，则%eax = 0x1
+  4011a4:	ba d0 32 60 00       	mov    $0x6032d0,%edx     设置首地址
   4011a9:	eb cb                	jmp    401176 <phase_6+0x82>
   4011ab:	48 8b 5c 24 20       	mov    0x20(%rsp),%rbx
   4011b0:	48 8d 44 24 28       	lea    0x28(%rsp),%rax
@@ -583,21 +583,21 @@ Disassembly of section .text:
   4011d2:	48 c7 42 08 00 00 00 	movq   $0x0,0x8(%rdx)
   4011d9:	00 
   4011da:	bd 05 00 00 00       	mov    $0x5,%ebp
-  4011df:	48 8b 43 08          	mov    0x8(%rbx),%rax
-  4011e3:	8b 00                	mov    (%rax),%eax
-  4011e5:	39 03                	cmp    %eax,(%rbx)
-  4011e7:	7d 05                	jge    4011ee <phase_6+0xfa>
+  4011df:	48 8b 43 08          	mov    0x8(%rbx),%rax     取%rbx所指数字的下一个数字的地址传入%rax，从这里开始到4011f5是一个循环，作用在于说明%rsp+0x20+0x0到%rsp+0x20+0x28存储的链表节点值必须是递减的
+  4011e3:	8b 00                	mov    (%rax),%eax    取出%rax所指的数字，存入%eax
+  4011e5:	39 03                	cmp    %eax,(%rbx)    比较%eax值与%rbx地址所指的值(即%eax的上一个值)的大小
+  4011e7:	7d 05                	jge    4011ee <phase_6+0xfa>    如果(%rbx)>=%eax，则表示不是递减顺序存储，则引爆
   4011e9:	e8 4c 02 00 00       	callq  40143a <explode_bomb>
-  4011ee:	48 8b 5b 08          	mov    0x8(%rbx),%rbx
-  4011f2:	83 ed 01             	sub    $0x1,%ebp
-  4011f5:	75 e8                	jne    4011df <phase_6+0xeb>
-  4011f7:	48 83 c4 50          	add    $0x50,%rsp
+  4011ee:	48 8b 5b 08          	mov    0x8(%rbx),%rbx     如果满足递减，则更新%rbx为下一个值
+  4011f2:	83 ed 01             	sub    $0x1,%ebp    更新%ebp，用于判断是否比较完6个数字
+  4011f5:	75 e8                	jne    4011df <phase_6+0xeb>    还未比较结束，则跳转继续循环
+  4011f7:	48 83 c4 50          	add    $0x50,%rsp     比较结束，存储的数字满足递减顺序，则取消申请栈空间
   4011fb:	5b                   	pop    %rbx
   4011fc:	5d                   	pop    %rbp
   4011fd:	41 5c                	pop    %r12
   4011ff:	41 5d                	pop    %r13
-  401201:	41 5e                	pop    %r14
-  401203:	c3                   	retq   
+  401201:	41 5e                	pop    %r14     弹出
+  401203:	c3                   	retq    返回
 
 0000000000401204 <fun7>:
   401204:	48 83 ec 08          	sub    $0x8,%rsp
