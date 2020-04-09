@@ -353,7 +353,7 @@ Disassembly of section .text:
   400ef7:	48 83 c4 08          	add    $0x8,%rsp    取消申请8个字节的栈空间(对应第一行)
   400efb:	c3                   	retq    返回主程序
 
-  ;对于第一个炸弹，重点在于获得0x402400这个地址存储的内容，使用命令x/s 0x402400来查看
+
 
 0000000000400efc <phase_2>:
   400efc:	55                   	push   %rbp     %rbp压栈
