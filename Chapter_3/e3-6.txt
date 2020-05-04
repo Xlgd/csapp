@@ -1,0 +1,8 @@
+%rax = x, %rcx = y
+
+leaq 6(%ax), %rdx               6x
+leaq (%rax, %rcx), %rdx         x + y 
+leaq (%rax, %rcx, 4), %rdx      x + 4 * y
+leaq 7(%rax, %rax, 8), %rdx     9 * x + 7
+leaq 0xA(, %rcx, 4), %rdx       4 * y + 0xA
+leaq 9(%rax, %rcx, 2), %rdx     x + 2 * y + 9

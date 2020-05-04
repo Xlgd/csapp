@@ -1,0 +1,7 @@
+void decode1(long *xp, long *yp, long *zp) {
+    long temp1 = *xp;
+    long temp2 = *yp;
+    *yp = temp1;
+    *xp = *zp;
+    *zp = temp2;
+}

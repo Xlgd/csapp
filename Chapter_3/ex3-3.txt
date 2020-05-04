@@ -1,0 +1,15 @@
+movb $0xF, (%edx)
+
+movl %rax, (%rsp)
+
+movw (%rax), 4(%rsp)
+
+movb %al, %sl
+
+movq %rax, $0x123
+不能给立即数赋值
+
+movl %eax, %rdx
+没有做拓展
+
+movb %si, 8(%rbp)
