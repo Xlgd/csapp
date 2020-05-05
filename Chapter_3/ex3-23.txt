@@ -1,0 +1,19 @@
+A. 
+x: %rdi
+y: %rcx
+n: %rdx
+
+B.
+
+C.
+dw_loop:
+    movq %rdi, %rax 给%rax赋值为x
+    movq %rdi, %rcx 给%rcx赋值为x
+    imulq %rdi, %rcx 给%rcx赋值为 y = x * x
+    leap (%rdi, %rdi), %rdx 给%rdx赋值为 n = 2 * x
+.L2:
+    leaq 1(%rcx, %rax), %rax 给%rax赋值为 x + y
+    subq $1, %rdx %rdx减1 (n--)
+    testq %rdx, %rdx 判断n是否大于0
+    jg .L2 如果n大于0，则继续循环
+    rep; ret 如果n不大于0，则跳出循环返回

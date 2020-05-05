@@ -1,0 +1,8 @@
+A. OP = /
+B. 
+arith:
+    leaq 7(%rdi), %rax 
+    testq %rdi, %rdi 判断x是否大于等于0
+    cmovns %rdi, %rax 如果x非负，则将其传入%rax中
+    sarq $3, %rax 算术右移3位（即除3）
+    ret
