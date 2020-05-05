@@ -1,0 +1,16 @@
+A.
+void gotocond(long a, long *p) {
+    if (!p) {
+        goto false;
+    }
+    if (a < *p) {
+        goto false;
+    }
+    *p = a;
+    return;
+
+false:
+    return;
+}
+
+B. 这是因为汇编代码中无法同时判断两个条件，所以需要两个条件分支

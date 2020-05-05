@@ -1,0 +1,7 @@
+uremdiv:
+    movq %rdx, %r8
+    movq %rdi, %rax
+    divq %rsi
+    movq %rax, (%r8)
+    movq %rdx, (%rcx)
+    ret
