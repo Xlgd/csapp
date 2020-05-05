@@ -1,0 +1,3 @@
+A. 将%rdx置为0
+B. movq $0x0 %rdx 
+C. 
