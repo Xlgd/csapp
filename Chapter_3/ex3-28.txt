@@ -1,0 +1,15 @@
+A.
+long fun_b(unsigned long x) {
+    long val = 0;
+    long i;
+    for (i = 64; i != 0; --i) {
+        x = x + 1;
+        val += val;
+        val = val | x;
+        x = x >> 1;
+    }
+    return val;
+}
+
+B.
+C.
