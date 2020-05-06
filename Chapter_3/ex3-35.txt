@@ -1,0 +1,10 @@
+A. %rbx中的值为x
+B.  
+long rfun(unsigned long x) {
+    if (x == 0) {
+        return x;
+    }
+    unsigned long nx = x / 4;
+    long rv = rfun(nx);
+    return (x + rv);
+}
