@@ -3,7 +3,7 @@ x: %rdi
 y: %rcx
 n: %rdx
 
-B.
+B. 编译器认为指针p总是指向x，因此表达式 (*p)++ 就能实现x加1，代码通过第7行的leaq指令，把这个加1和加y组合起来
 
 C.
 dw_loop:
@@ -12,7 +12,7 @@ dw_loop:
     imulq %rdi, %rcx 给%rcx赋值为 y = x * x
     leap (%rdi, %rdi), %rdx 给%rdx赋值为 n = 2 * x
 .L2:
-    leaq 1(%rcx, %rax), %rax 给%rax赋值为 x + y
+    leaq 1(%rcx, %rax), %rax 给%rax赋值为 x += y + 1
     subq $1, %rdx %rdx减1 (n--)
     testq %rdx, %rdx 判断n是否大于0
     jg .L2 如果n大于0，则继续循环

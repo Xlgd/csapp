@@ -3,13 +3,13 @@ long fun_b(unsigned long x) {
     long val = 0;
     long i;
     for (i = 64; i != 0; --i) {
-        x = x + 1;
-        val += val;
-        val = val | x;
+        val = (val << 1) | (x & 0x1);
         x = x >> 1;
     }
     return val;
 }
 
-B.
-C.
+B. 这段代码是用guarded-do变换生成的，但是编译器发现因为i初始化成了64，所以一定会满足
+   测试i != 0，因此初始的测试是没必要的。
+C. 这段代码把x中的位反过来，创造一个镜像。实现方法是：将x的位从左往右移，然后再
+   填入这些位，就像是把val从右往左移。

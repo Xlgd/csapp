@@ -1,4 +1,4 @@
-A. jump to middle
+A. jump to middle方法
 
 B. 
 long fun_a(unsigned long x) {
@@ -10,4 +10,4 @@ long fun_a(unsigned long x) {
     return (1 & val); 
 }
 
-C. 
+C. 这个代码计算参数x的奇偶性，如果x中有奇数个1，就返回1，如果有偶数个1，就返回0

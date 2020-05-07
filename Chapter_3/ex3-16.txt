@@ -3,14 +3,13 @@ void gotocond(long a, long *p) {
     if (!p) {
         goto false;
     }
-    if (a < *p) {
+    if (*p >= a) {
         goto false;
     }
     *p = a;
-    return;
-
 false:
     return;
 }
 
-B. 这是因为汇编代码中无法同时判断两个条件，所以需要两个条件分支
+B. 第一个条件分支是&&表达式实现的一部分，如果对p为非空的测试失败，代码会跳过对
+   a > *p的测试
