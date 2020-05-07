@@ -1,0 +1,5 @@
+S   2   14  xS  xS + 2i
+T   8   24  xT  xT + 8i
+U   8   48  xU  xU + 8i
+V   4   32  xV  xV + 4i
+W   8   24  xW  xW + 8i
