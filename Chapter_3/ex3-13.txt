@@ -1,4 +1,4 @@
-A: int, unsigned int
+A: int
 B: short
-C: char
+C: unsigned char
 D: long, unsinged long

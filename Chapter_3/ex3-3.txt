@@ -1,15 +1,20 @@
 movb $0xF, (%edx)
+不能使用%edx作为地址寄存器
 
 movl %rax, (%rsp)
+不匹配
 
 movw (%rax), 4(%rsp)
+不能在两个内存之间传输数据
 
 movb %al, %sl
+没有寄存器%sl
 
 movq %rax, $0x123
-不能给立即数赋值
+不能将立即数作为目标
 
 movl %eax, %rdx
-没有做拓展
+目标操作数大小有误
 
 movb %si, 8(%rbp)
+不匹配

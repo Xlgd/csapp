@@ -1,4 +1,4 @@
 movq %rdi, %rax
-sal 4, %rax
+salq $4, %rax
 movl %esi, %ecx
-sar %ecx, %rax
+sarq %cl, %rax

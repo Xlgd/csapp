@@ -1,6 +1,6 @@
-char            int             movsbl (%dil), %eax      movw %eax, %si
-char            unsigned        movzbl (%dil), %eax      movw %eax, %si
-unsigned char   long            movsbq (%dil), %rax     movq %rax, %rsi
-int             char            movb   (%di), %al       movb %al, %sil
-unsigned        unsigned char   movb   (%di), %al       movb %al, %sil
-char            short           movsbw (%dil), %ax      movw %ax, %si
+char            int             movsbl (%rdi), %eax      movl %eax, (%rsi)
+char            unsigned        movsbl (%rdi), %eax      movl %eax, (%rsi)
+unsigned char   long            movzbl (%rdi), %eax      movq %rax, (%rsi)
+int             char            movl   (%rdi), %eax      movb %al, (%rsi)
+unsigned        unsigned char   movl   (%rdi), %eax      movb %al, (%rsi)
+char            short           movsbw (%rdi), %ax       movw %ax, (%rsi)
