@@ -1,0 +1,14 @@
+A. 
+p: 0
+s.x: 8
+s.y: 12
+next: 16
+
+B. 总共需要24个字节
+
+C.
+void sp_init(struct prob *sp) {
+    sp->s.x = s.y;
+    sp->p = &(s.x);
+    sp->next = s->p;
+}

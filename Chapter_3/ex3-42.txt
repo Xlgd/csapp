@@ -1,0 +1,13 @@
+A.
+long fun(struct ELE *ptr) {
+    long result = 0;
+    if (ptr != 0) {
+        result += ptr->v;
+        ptr = ptr->p;
+    }
+    return result;
+}
+
+B.
+结构体中包含一个long类型的数据v和一个指向此结构的指针p
+函数fun实现通过结构中的指针p来累加结构中的数据v
