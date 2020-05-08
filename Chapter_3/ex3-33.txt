@@ -1,0 +1,6 @@
+procprob:
+    movslq %edi, %rdi   将a转换为long   
+    addq %rdi, (%rdx)   *u += a
+    addb %sil, (%rcx)   *v += b
+    movl $6, %eax       返回4 + 2
+    ret

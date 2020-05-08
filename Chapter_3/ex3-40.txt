@@ -1,8 +1,9 @@
 void fix_set_diag_opt(fix_matrix A, int val) {
-    int *Adiag = &A[0][0];
-    int *Aend = &A[N][N];
+    int *Abase = &A[0][0];
+    long i = 0;
+    long iend = N * (N + 1);
     do {
-        *Adiag = val;
-        Adiag += (N + 1);
-    } while (Adiag != Aend);
+        Abase[i] = val;
+        i += (N + 1);
+    } while (i != iend);
 }

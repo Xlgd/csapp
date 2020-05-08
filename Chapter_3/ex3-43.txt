@@ -1,0 +1,6 @@
+up->t1.u            long    movq (%rdi), %rax   movq %rax, (%rsi)
+up->t1.v            short   movw 8(%rdi), %ax   movw %ax, (%rsi)
+&up->t1.w           char*   addq $, %rdi        movq %rdi, (%rsi)
+up->t2.a            int*    movq %rdi, %rsi
+up->t2.a[up->t1.u]  int     movq (%rdi), %rax   movl (%rdi, %rax, 4), %eax  movl %eax, (%rsi)
+*up->t2.p           char    movq 8(%rdi), %rax  movb (%rax), %al            movb %al, %(rsi)

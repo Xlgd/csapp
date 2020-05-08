@@ -1,5 +1,5 @@
-S + 1           short*  xS + 2          leaq 2(%rdx), %rax
-S[3]            short   M[xS + 2i]      movl (%rdx, %rcx, 2), %ax
-&S[i]           short*  xS + 2i         leaq (%rdx, %rcx, 2), %rax
-S[4 * i + 1]    short   M[xS + 8i + 2]  movl 2(%rdx, %rcx, 8), %ax
-S + i - 5       short*  xS + 2i - 10    leaq -10(%rdx, %rcx, 2), %rax
+S + 1           short*  xS + 2          leal 2(%rdx), %rax
+S[3]            short   M[xS + 6]       movw 6(%rdx), %ax
+&S[i]           short*  xS + 2i         leal (%rdx, %rcx, 2), %rax
+S[4 * i + 1]    short   M[xS + 8i + 2]  movw 2(%rdx, %rcx, 8), %ax
+S + i - 5       short*  xS + 2i - 10    leal -10(%rdx, %rcx, 2), %rax

@@ -8,7 +8,7 @@ B. 总共需要24个字节
 
 C.
 void sp_init(struct prob *sp) {
-    sp->s.x = s.y;
-    sp->p = &(s.x);
-    sp->next = s->p;
+    sp->s.x = sp->s.y;
+    sp->p = &(sp->s.x);
+    sp->next = sp;
 }

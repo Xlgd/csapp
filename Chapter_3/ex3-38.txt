@@ -1,2 +1,12 @@
-M = 7
-N = 5
+sum_element:
+    leaq 0(, %rdi, 8), %rdx     8i
+    subq %rdi, %rdx             7i
+    addq %rsi, %rdx             7i + j
+    leaq (%rsi, %rsi, 4), %rax  5j
+    addq %rax, %rdi             5j + i
+    movq Q(, %rdi, 8), %rax     M[xQ + 8(5j + i)]
+    addq P(, %rdx, 8), %rax     M[xP + 8(7i + j)]
+    ret
+
+可以看出，对矩阵P的引用是在字节偏移 8 * (7i + j) 的地方，而对矩阵Q的引用是在
+字节偏移 8 * (5j + i) 的地方，所以可以确定P有7列，Q有5列，即M = 5，N = 7
