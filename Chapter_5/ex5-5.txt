@@ -1,0 +1,14 @@
+double poly(double a[], double x, long degree) {
+    long i;
+    double result = a[0];
+    double xpwr = x;
+    for (i = 1; i <= degree; i++) {
+        result += a[i] * xpwr;
+        xpwr = x * xpwr;
+    }
+    return result;
+}
+
+A. 执行n次加法，2n次乘法
+B. 函数第7行浮点乘法要延迟5个周期，第8行浮点乘法也要延迟5个周期，
+   但是由于两行之间没有数据相关，可以同时进行，所以CPE为5.00
