@@ -6,7 +6,9 @@ void combine5(vec_ptr v, data_t *dest) {
     data_t acc = IDENT;
 
     for (i = 0; i < limit; i += 5) {
-        acc = (acc OP data[i]) OP (data[i+1] OP data[i+2]) OP (data[i+3] OP data[i+4]);
+        acc = acc OP data[i] OP data[i+1];
+        acc = acc OP data[i+2] OP data[i+3];
+        acc = acc OP data[i+4];
     }
 
     for (; i < length; i++) {
