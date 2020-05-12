@@ -1,0 +1,18 @@
+A.
+dst     列0     列1
+0行     m       m       
+1行     m       m
+
+src     列0     列1
+0行     m       m
+1行     m       h
+
+B.
+A.
+dst     列0     列1
+0行     m       h       
+1行     m       h
+
+src     列0     列1
+0行     m       h
+1行     m       h

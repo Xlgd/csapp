@@ -1,0 +1,7 @@
+这个文件由2000个512字节的逻辑块组成。对于磁盘，T(avg seek) = 5ms, T(max rotation) = 6ms, T(avg rotation) = 3ms。
+
+A. 最好情况：在好的情况下，块被映射到连续的扇区，在同一柱面上，那样就可以一块接一块地读，不用移动读/写头。
+   一旦读/写头定位到了第一个扇区，需要磁盘转两整圈（每圈1000个扇区）来读所有2000个块。所以，读这个文件的总时间为
+   T(avg seek) + T(avg rotation) + 2 * T(max rotation) = 20ms 
+B. 随机的情况：在这种情况下，块被随机地映射到扇区上，读2000块中的每一块都需要T(avg seek) + T(avg rotation)ms，
+   所以读这个文件的总时间为(T(avg seek) + T(avg rotation)) * 2000 = 16000ms。
