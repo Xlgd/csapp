@@ -1,0 +1,6 @@
+unsigned int snooze(unsigned int secs) {
+    unsigned int result = sleep(secs);
+    int output = secs - result;
+    printf("Slept for %d of %d secs", output, secs);
+    return result;
+}
