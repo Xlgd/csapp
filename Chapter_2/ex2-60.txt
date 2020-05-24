@@ -1,0 +1,23 @@
+#include<stdio.h>
+
+unsigned replace_byte(unsigned x, int i, unsigned char b) {
+	unsigned int bt = b;
+	unsigned int mask = 0xFF;
+	int j = 0;
+	for (; j < i; ++j) {
+		mask = mask << 8;
+		bt = bt << 8;
+	}
+	mask = ~mask;
+	x = x & mask;
+	x = x | bt;
+	return x;
+}
+
+int main() {
+	unsigned int x = 0x12345678;
+	unsigned char b = 0xAB;
+	int i = 0;
+	printf("%x\n", replace_byte(x, i, b));
+	return 0;
+}

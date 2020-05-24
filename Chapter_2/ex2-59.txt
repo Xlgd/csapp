@@ -1,0 +1,1 @@
+int z = (x & 0x000000FF) | (y & 0xFFFFFF00);

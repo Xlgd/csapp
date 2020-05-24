@@ -1,0 +1,23 @@
+#include<stdio.h>
+
+int is_little_endian() {
+	int x = 0x1;
+	char *p = (char *)&x;
+	if ((*p) == 0) { /* big endian */
+		return 0;
+	}
+	else { /* little endian */
+		return 1;
+	}
+}
+ 
+int main() {
+	int result = is_little_endian();
+	if (result == 0) {
+		printf("big endian\n");
+	}
+	else {
+		printf("little endian\n");
+	}
+	return 0;
+}
