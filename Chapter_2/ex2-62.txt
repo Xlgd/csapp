@@ -1,0 +1,10 @@
+int is_shifts_are_arithmetic() {
+	int number = 0xF0000000;
+	int shifts =  28;
+	if ((number >> shifts) == 0xFFFFFFFF) {
+		return 1;
+	}
+	else {
+		return 0;
+	}
+}
