@@ -1,2 +1,2 @@
 # csapp
-csapp exercises and labs (updating)
+csapp exercises and labs
